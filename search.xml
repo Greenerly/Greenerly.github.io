@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>hexo发生error：spawn failed错误的解决方法</title>
+      <link href="2021/05/14/%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/hexo-problem/"/>
+      <url>2021/05/14/%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/hexo-problem/</url>
+      
+        <content type="html"><![CDATA[<h1 id="hexo-d后出现spawn-failed解决办法"><a href="#hexo-d后出现spawn-failed解决办法" class="headerlink" title="hexo d后出现spawn failed解决办法"></a>hexo d后出现spawn failed解决办法</h1><p>在编辑博客后进行 <em>hexo clean</em> , <em>hexo g</em>, <em>hexo d</em> 后，先时在终端加载许久，随后弹出<br>error：spawn failed…<br>原因大致是编辑时.deploy_git文件夹内部文件在 hexo d 时又损坏  </p><p><strong>解决办法</strong>  </p><p>1.删除 <em>.deploy_git</em> 文件夹  </p><p>2.输入 <em>git config –global core.autocrlf false</em>  </p><p>3.依次执行：<br><em>hexo clean</em></p><p>  <em>hexo g</em></p><p>  <em>hexo d</em>  </p><p><strong>暴力解决 亲测有效</strong></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>信息的传播</title>
       <link href="2021/05/13/%E5%A8%B1%E4%B9%90%E8%87%B3%E6%AD%BB/%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BC%A0%E6%92%AD/"/>
       <url>2021/05/13/%E5%A8%B1%E4%B9%90%E8%87%B3%E6%AD%BB/%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BC%A0%E6%92%AD/</url>
