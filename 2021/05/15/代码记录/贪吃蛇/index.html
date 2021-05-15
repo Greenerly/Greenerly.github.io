@@ -14,11 +14,11 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="先时在终端加载许久，随后弹出error：spawn failed...">
+  <meta name="description" content="Anything i want to say">
   <meta name="author" content="Greenerly">
   <meta name="keywords" content="books,learn">
   
-  <title>hexo发生error：spawn failed错误的解决方法 - Greenerly&#39;s blog</title>
+  <title>Greenerly&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="hexo发生error：spawn failed错误的解决方法">
+            <span class="h2" id="subtitle" title="">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-05-14 12:31" pubdate>
-        2021年5月14日 下午
+      <time datetime="2021-05-15 17:12" pubdate>
+        2021年5月15日 下午
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      103 字
+      828 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      3
        分钟
     </span>
   
@@ -225,17 +225,234 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">hexo发生error：spawn failed错误的解决方法</h1>
+            <h1 style="display: none"></h1>
             
             <div class="markdown-body">
-              <h1 id="hexo-d后出现spawn-failed解决办法"><a href="#hexo-d后出现spawn-failed解决办法" class="headerlink" title="hexo d后出现spawn failed解决办法"></a>hexo d后出现spawn failed解决办法</h1><p>在编辑博客后进行 <em>hexo clean</em> , <em>hexo g</em>, <em>hexo d</em> 后，先时在终端加载许久，随后弹出<br>error：spawn failed…<br>原因大致是编辑时.deploy_git文件夹内部文件在 hexo d 时又损坏  </p>
-<p><strong>解决办法</strong>  </p>
-<p>1.删除 <em>.deploy_git</em> 文件夹  </p>
-<p>2.输入 <em>git config –global core.autocrlf false</em>  </p>
-<p>3.依次执行：<br><em>hexo clean</em></p>
-<p>  <em>hexo g</em></p>
-<p>  <em>hexo d</em>  </p>
-<p><strong>暴力解决 亲测有效</strong></p>
+              <pre><code>//Sleep(70);延时七十毫秒
+#include&lt;iostream&gt;
+#include&lt;windows.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;stdio.h&gt;
+#include&lt;time.h&gt;
+#include&lt;conio.h&gt;
+#include&lt;cmath&gt;
+#include &lt;Windows.h&gt;//windows编程头文件
+using namespace std;
+
+struct node &#123;           //坐标定义
+    int x;
+    int y;
+&#125;snake[1000];
+
+HANDLE hout= GetStdHandle(STD_OUTPUT_HANDLE);
+COORD pos;
+int h, l;                        //框架大小
+int snake_length;                //蛇长度
+node food;                        //食物坐标
+int key=72,snake_speed;
+
+void print_kuang(int h, int l)    //打印框架
+&#123;
+    int i = 0, j = 0;
+    for (i = 0; i &lt;= h; i++)
+        for (j = 0; j &lt;= l; j++)
+        &#123;
+            if (i == 0 || i == h || j == 0 || j == l)
+            &#123;
+                if (j == l)
+                    cout &lt;&lt; &#39;*&#39; &lt;&lt; endl;
+                else
+                    cout &lt;&lt; &#39;*&#39;;
+            &#125;
+            else
+                cout &lt;&lt; &#39; &#39;;
+        &#125;
+&#125;
+
+void hide()                        //隐藏光标函数
+&#123;
+    CONSOLE_CURSOR_INFO cursor_info = &#123; 1,0 &#125;;
+    SetConsoleCursorInfo(hout, &amp;cursor_info);
+&#125;
+
+void gotoxy(int x, int y)      //移动光标函数
+&#123;
+
+    pos.X = x - 1;
+    pos.Y = y - 1;    
+    SetConsoleCursorPosition(hout, pos);
+&#125;
+
+void print_food()        //打印食物函数
+&#123;
+    int a, b, c ;
+    while (1)
+    &#123;
+        srand((unsigned)time(NULL));
+        int a=rand()%(h+1)+2, b = rand() % 65 +1 ;
+        food.x = b;
+        food.y = a;
+        c = 1;
+        for (int k = 0; k &lt;= snake_length - 1; k++)
+        &#123;
+            if (snake[k].x == food.x&amp;&amp;snake[k].y == food.y)
+            &#123;
+                c = 0;
+                break;
+            &#125;
+        &#125;
+        if (c!=0)
+            break;
+    &#125;
+    gotoxy(food.x, food.y);
+    cout &lt;&lt; &#39;%&#39;;
+&#125;
+
+void print_snake()                //首次打印蛇
+&#123;
+    gotoxy(snake[0].x, snake[0].y);
+    cout &lt;&lt; &quot;@&quot;;
+    for (int i = 1; i &lt;= snake_length - 1; i++)
+    &#123;
+        gotoxy(snake[i].x, snake[i].y);
+        cout &lt;&lt; &#39;*&#39;;
+    &#125;
+&#125;
+
+bool is_correct()                //是否相撞
+&#123;
+    if (snake[0].x == 1 || snake[0].y == 1 || snake[0].x == l || snake[0].y == h)
+        return false;
+    for (int i = 1; i &lt; snake_length - 1; i++)
+    &#123;
+        if (snake[0].x == snake[i].x&amp;&amp;snake[0].y == snake[i].y)
+            return false;
+    &#125;
+    return true;
+&#125;
+
+void keyDown()
+&#123;
+    int pre_key = key;
+    if (_kbhit())
+    &#123;
+        fflush(stdin);
+        key = _getch();
+        key = _getch();
+    &#125;
+    bool e = false;
+    node temp=snake[0],temp1=snake[snake_length-1];
+    if (!(snake[0].x == food.x&amp;&amp;snake[0].y == food.y))     //没吃到食物
+    &#123;
+        gotoxy(snake[snake_length-1].x, snake[snake_length-1].y);
+        cout &lt;&lt; &#39; &#39;;
+    &#125;
+    else
+    &#123;
+        print_food();
+        snake_length += 1;
+        snake_speed -= 5;
+    &#125;
+    for (int i = snake_length-1; i &gt; 0; i--)
+    &#123;
+        snake[i].x = snake[i - 1].x;
+        snake[i].y = snake[i - 1].y;
+    &#125;
+    snake[0] = temp;
+    if (pre_key == 72 &amp;&amp; key == 80)
+        key = 72;
+    if (pre_key == 80 &amp;&amp; key == 72)
+        key = 80;
+    if (pre_key == 75 &amp;&amp; key == 77)
+        key = 75;
+    if (pre_key == 77 &amp;&amp; key == 75)
+        key = 77;
+    switch (key)
+    &#123;
+    case 75:
+        snake[0].x -= 1;//往左
+        break;
+    case 77:
+        snake[0].x += 1;//往右
+        break;
+    case 72:
+        snake[0].y--;//往上
+        break;
+    case 80:
+        snake[0].y++;//往下
+        break;
+    &#125;
+    gotoxy(snake[0].x, snake[0].y);
+    cout &lt;&lt; &#39;@&#39;;
+    gotoxy(snake[1].x, snake[1].y);
+    cout &lt;&lt; &#39;*&#39;;
+&#125;
+
+
+/*bool go_ahead()
+&#123;
+    node temp,temp1;
+    bool e = false;
+    temp = snake[snake_length - 1];
+    temp1 = snake[0];
+    for (int i = snake_length - 1; i--; i &gt;= 1)
+        snake[i] = snake[i-1];
+    snake[0] = temp1;
+    snake[0].x += direct[dir][0];   //dir;  //定义方向右，左，下，上
+    snake[0].y += direct[dir][1];
+    if (snake[0].x == food.x&amp;&amp;snake[0].y == food.y)     //吃到食物
+    &#123;
+        snake_length += 1;
+        snake[snake_length - 1] = temp;
+        e = true;
+    &#125;
+    if (!e)                //打印蛇的状态，没有吃到
+    &#123;
+        gotoxy(temp.x, temp.y);
+        cout &lt;&lt; &#39; &#39;;
+        gotoxy(snake[1].x, snake[1].y);
+        cout &lt;&lt; &#39;*&#39;;
+    &#125;
+    else                  //吃到食物
+    &#123;
+        print_food();
+    &#125;
+    gotoxy(snake[0].x, snake[0].y);
+    cout &lt;&lt; &#39;@&#39;;
+    /*if (!is_correct())
+    &#123;
+        cout &lt;&lt; &quot;You lose!!!!!!&quot; &lt;&lt; endl &lt;&lt; &quot;Length:&quot; &lt;&lt; snake_length&lt;&lt; endl;
+        return false;
+    &#125;
+    return true;
+&#125;
+*/
+int main()
+&#123;
+    h = 26, l = 55;
+    print_kuang(h, l);
+    snake_length = 5;
+    snake_speed = 200;
+    for (int i = 0; i &lt; 5; i++)
+    &#123;
+        snake[i].x = 25;
+        snake[i].y = 15 + i;
+    &#125;
+    print_snake();
+    print_food();
+    while (1)
+    &#123;
+        keyDown();
+        if (!is_correct())
+            break;
+        Sleep(snake_speed);
+    &#125;
+    system(&quot;cls&quot;);
+    gotoxy(20, 10);
+    cout &lt;&lt; &quot;你的成绩是：&quot; &lt;&lt; snake_length &lt;&lt; &#39; &#39;;
+    Sleep(2000);
+&#125;
+</code></pre>
 
             </div>
             <hr>
@@ -256,18 +473,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/15/%E4%BB%A3%E7%A0%81%E8%AE%B0%E5%BD%95/%E8%B4%AA%E5%90%83%E8%9B%87/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/05/13/%E5%A8%B1%E4%B9%90%E8%87%B3%E6%AD%BB/%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BC%A0%E6%92%AD/">
-                        <span class="hidden-mobile">信息的传播</span>
+                      <a href="/2021/05/14/%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/hexo-problem/">
+                        <span class="hidden-mobile">hexo发生error：spawn failed错误的解决方法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
